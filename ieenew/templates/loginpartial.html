@@ -1,0 +1,25 @@
+{% if user.is_authenticated %}
+<style>
+	img.avatar{
+		height : 50px;
+		width  : 50 px;
+	}
+</style>
+<form id="logoutForm" action="/logout" method="post" class="navbar-right">
+    {% csrf_token %}
+    <ul class="nav navbar-nav navbar-right">
+        <li><span class="navbar-brand">Привіт {{ user.username }}!</span></li>
+		{%if user.profile.avatar%}
+		<li><img class="avatar" src="/media/{{ user.profile.avatar }}"></li>
+		{% endif %}
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+</form>
+
+{% else %}
+
+<ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'login' %}">Вхід/Реєстрація</a></li>
+</ul>
+
+{% endif %}

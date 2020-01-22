@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+
+{% block title %}{{article.article_title}}{% endblock %}
+
+{% block content %}
+<style>
+
+        img {
+            max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+        }
+
+        textarea {
+            max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+        }
+
+        input[type="text"] {
+            border: 1px solid gray;
+            max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+        }
+
+        textarea[type="text"] {
+            border: 1px solid gray;
+            max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+        }
+    p {
+        max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+            word-wrap:break-word;
+    }
+</style>
+<div class="jumbotron">
+    <h2>{{article.article_title}}</h2>
+    <div>
+        {%if article.article_image%}
+        <img src="{{MEDIA_URL}}{{ article.article_image.url }}">
+        {%endif%}
+    </div>
+    <p>{{article.article_text}}</p>
+
+    <em>{{article.pub_data}}</em>
+</div>
+<div class="jumbotron">
+{% if latest_comments_list %}
+	{% for a in latest_comments_list %}
+		<p>
+			<strong>{{a.author_name}}</strong>
+			<p>{{a.coment_text}}</p>
+		</p>
+	{% endfor %}
+{% else %}
+Коментраии не найдены , станьте первыми!
+{% endif %}
+</div>
+<div class="jumbotron">
+<form action="{% url 'articles:leave_comment' article.id %}" method="POST">
+	{% csrf_token %}
+	<h2>{{user.username}}</h2>
+	<textarea name="text" required="" placeholder="Текст коментария" cols="50" rows="5"></textarea><br>
+	<button type="submit" class="btn btn-primary btn-large">Оставить коментарий</button>
+	<a href="https://instagram.com/kpi.iee?igshid=1l3jr4x0ouw3q" class="btn btn-primary btn-large">Група в Instagram &raquo;</a>
+	<a href="https://t.me/studprofkom_iee" class="btn btn-primary btn-large">Група в Telegram &raquo;</a>
+	<a href="https://discord.gg/ENt9AbB" class="btn btn-primary btn-large">Група в Discord &raquo;</a>
+</form>
+</div>
+{% endblock %}

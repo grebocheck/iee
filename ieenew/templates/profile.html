@@ -1,0 +1,18 @@
+<!-- profile.html -->
+{% extends "base.html" %}
+<style>
+	button{
+	class : btn btn-primary btn-large;
+	}
+</style>
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+	{%if user.profile.avatar%}
+	<img src="/media/{{user.profile.avatar}}">
+	{% endif %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button class="btn btn-primary btn-large" type="submit">Сохранить</button>
+</form>
+{% endblock %}

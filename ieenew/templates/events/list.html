@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Ор єто ж мой сайт{% endblock %}
+{% block content %}
+<style>
+        img.sens {
+            max-width: 40%;
+            height: auto;
+            width: auto\9; /* ie8 */
+            margin-right: 80px;
+        }
+		p.clip {
+			max-height:400px;
+			white-space: pre-line;
+			overflow: hidden; /* Обрезаем все, что не помещается в область */
+			padding: 5px; /* Поля вокруг текста */
+			text-overflow: ellipsis; /* Добавляем многоточие */
+			float: right;
+			width: 50%;
+		a.cas 
+		{
+			float: right;
+			width: 50%;	
+		}
+   }
+</style>
+	{% if latest_events_list %}
+
+		{% for a in latest_events_list %}
+<div class="jumbotron">
+	<a class = "cas"href="{% url 'events:detail' a.id %}"><h2>{{a.title_event}}</h2></a>
+    {%if a.event_img%}
+    <img class = "sens" src="{{MEDIA_URL}}{{ a.event_img.url }}">
+    {%endif%}
+	<p class = "clip">{{a.event_article}} </p>
+	
+</div>
+		{% endfor %}
+
+	{% else %}
+		Ивентов не найдено )=
+	{% endif %}
+
+{% endblock %}

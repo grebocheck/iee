@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{%load static%}
+{% block content %}
+<style>
+        img.sens {
+            max-width: 40%;
+            height: auto;
+            width: auto\9; /* ie8 */
+            margin-right: 80px;
+        }
+		p.clip {
+			max-height:400px;
+			white-space: pre-line;
+			overflow: hidden; /* Обрезаем все, что не помещается в область */
+			padding: 5px; /* Поля вокруг текста */
+			text-overflow: ellipsis; /* Добавляем многоточие */
+			float: right;
+			width: 50%;
+		a.cas 
+		{
+			float: right;
+			width: 50%;	
+		}
+   }
+</style>
+
+<div class="jumbotron">
+    <h1>IEE New</h1>
+    <p class="lead">Сайт профбюро ІЕЕ :D</p>
+</div>
+	{% if html %}
+
+		{% for a in html %}
+		{% if a in latest_events_list %}
+<div class="jumbotron">
+	<a class = "cas"href="/events/{{a.id}}"><h2>{{a.title_event}}</h2></a>
+    {%if a.event_img%}
+    <img class = "sens" src="{{MEDIA_URL}}{{ a.event_img.url }}">
+    {%endif%}
+	<p class = "clip">{{a.event_article}} </p>
+</div>
+
+		{% else %}
+<div class="jumbotron">
+	<a class = "cas" href="/articles/{{a.id}}"><h2 class="cas">{{a.article_title}}</h2></a>
+	{%if a.article_image%}
+	<p>{{a.author}}</p>
+	<img class = "sens" src="{{MEDIA_URL}}{{ a.article_image.url }}">
+	{%endif%}
+	<p class = "clip">{{a.article_text}} </p>
+	
+</div>	
+		{% endif %}
+		{% endfor %}
+
+	{% else %}
+		Ивентов не найдено )=
+	{% endif %}
+
+
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+
+{% block title %}{{event.title_event}}{% endblock %}
+
+{% block content %}
+<style>
+
+        img {
+            max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+        }
+
+        textarea {
+            max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+        }
+
+        input{
+            border: 1px solid gray;
+            max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 
+			vertical-align: center;
+        }
+
+        textarea[type="text"] {
+            border: 1px solid gray;
+            max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+        }
+    p {
+        max-width: 100%;
+            height: auto;
+            width: auto\9; /* ie8 */
+            word-wrap:break-word;
+    }
+</style>
+<div class="jumbotron">
+    <h2>{{event.title_event}}</h2>
+    <div>
+        {%if event.event_img%}
+        <img src="{{MEDIA_URL}}{{ event.event_img.url }}">
+        {%endif%}
+    </div>
+    <p>{{event.event_article}}</p>
+
+    <em>Пост створено:{{event.date_post}}</em>
+	<p>
+	<em>Дата проведення:{{event.date_do}}</em>
+</div>
+<div class="jumbotron">
+<form action="{% url 'events:registr_member' event.id %}" method="POST">
+	{% csrf_token %}
+	<input name="name_member" required="" placeholder="Ваше Ім'я*"></input>
+	<p>
+	<br>
+	<input name="contact" required="" placeholder="Контакт(Номер телефону)*"></input>
+	<p>
+	<br>
+	<input name="born_date" required="" placeholder="Дата народження*"></input>
+	<br>
+	<p>
+	<button type="submit" class="btn btn-primary btn-large">Лишити заявку на участь</button>
+	<a href="https://instagram.com/kpi.iee?igshid=1l3jr4x0ouw3q" class="btn btn-primary btn-large">Група в Instagram &raquo;</a>
+	<a href="https://t.me/studprofkom_iee" class="btn btn-primary btn-large">Група в Telegram &raquo;</a>
+	<a href="https://discord.gg/ENt9AbB" class="btn btn-primary btn-large">Група в Discord &raquo;</a>
+</form>
+</div>
+{% endblock %}

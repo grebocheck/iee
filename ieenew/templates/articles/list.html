@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Ор єто ж мой сайт{% endblock %}
+{% block content %}
+<style>
+        img.sens {
+            max-width: 40%;
+            height: auto;
+            width: auto\9; /* ie8 */
+            margin-right: 80px;
+			width: 40%;
+        }
+		p.clip {
+			max-height:300px;
+			white-space: pre-line;
+			overflow: hidden; /* Обрезаем все, что не помещается в область */
+			padding: 5px; /* Поля вокруг текста */
+			text-overflow: ellipsis; /* Добавляем многоточие */
+			float: right;
+			width: 50%;
+		a.cas 
+		{
+			float: right;
+			width: 50%;	
+		}
+   }	
+</style>
+	{% if latest_articles_list %}
+
+		{% for a in latest_articles_list %}
+<div class="jumbotron">
+	<a class = "named" href="{% url 'articles:detail' a.id %}"><h2 class="cas">{{a.article_title}}</h2></a>
+	{%if a.article_image%}
+	<p>{{a.author}}</p>
+	<img class = "sens" src="{{MEDIA_URL}}{{ a.article_image.url }}">
+	{%endif%}
+	<p class = "clip">{{a.article_text}} </p>
+	
+</div>
+		{% endfor %}
+
+	{% else %}
+		Статьи не найдено )=
+	{% endif %}
+
+{% endblock %}
