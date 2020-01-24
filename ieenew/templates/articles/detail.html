@@ -52,7 +52,9 @@
 
     <em>{{article.pub_data}}</em>
     <p></p>
+    {%if article.link_button%}
     <a href={{article.link_button}} class="btn btn-primary btn-large">Посилання до статті &raquo;</a>
+    {%endif%}
 </div>
 <div class="jumbotron">
 {% if latest_comments_list %}
