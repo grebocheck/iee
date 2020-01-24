@@ -10,6 +10,7 @@ class Article(models.Model):
     pub_data = models.DateTimeField('Дата публикации')
     article_image = models.ImageField(height_field=None, width_field=None,null = True , blank = True , upload_to = "images/" , verbose_name = 'Изображение')
     author = models.CharField('Автор', max_length = 50 , default = 'Admin')
+    link_button = models.TextField('Ссилка для переходу' , null= True)
 
     def __str__(self):
         return self.article_title

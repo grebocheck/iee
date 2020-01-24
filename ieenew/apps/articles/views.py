@@ -21,7 +21,7 @@ def detail(request , article_id):
 
     latest_comments_list = a.coment_set.order_by('-id')[:10]
 
-    return render(request , "articles/detail.html" , {"article": a, 'latest_comments_list': latest_comments_list,'title':a.article_title, 'year':datetime.now().year,'author':a.author})
+    return render(request , "articles/detail.html" , {"article": a, 'latest_comments_list': latest_comments_list,'title':a.article_title, 'year':datetime.now().year,'author':a.author , 'link_button':a.link_button})
 
 def leave_comment(request , article_id ):
     if request.user.username == "":
