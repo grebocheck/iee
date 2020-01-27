@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'profiles.apps.ProfilesConfig',
     'articles.apps.ArticlesConfig',
     'grappelli',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
