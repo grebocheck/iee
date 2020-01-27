@@ -18,6 +18,9 @@ class Article(models.Model):
     def was_published_recently(self):
         return self.pub_data >= (timezone.now() - datetime.timedelta(days = 7))
 
+    def get_absolute_url(self):
+        return '/'+self.article_title+'-'+self.author+'/'
+
     class Meta:
         verbose_name = "Стаття"
         verbose_name_plural = 'Статті'
