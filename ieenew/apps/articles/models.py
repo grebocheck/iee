@@ -19,7 +19,7 @@ class Article(models.Model):
         return self.pub_data >= (timezone.now() - datetime.timedelta(days = 7))
 
     def get_absolute_url(self):
-        return '/articles/'+str(self.id)+'/'
+        return 'articles/'+str(self.id)+'/'
 
     class Meta:
         verbose_name = "Стаття"

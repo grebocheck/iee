@@ -11,7 +11,7 @@ class Event(models.Model):
         return self.title_event
 
     def get_absolute_url(self):
-        return '/events/'+str(self.id)+'/'
+        return 'events/'+str(self.id)+'/'
 
     class Meta:
         verbose_name = "Івент"
