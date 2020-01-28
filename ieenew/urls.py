@@ -26,11 +26,17 @@ from datetime import datetime
 from django.contrib.auth.views import LoginView , LogoutView
 from django.contrib.sitemaps.views import sitemap
 from articles.models import Article
+from events.models import Event
 from django.contrib.sitemaps import GenericSitemap
 
-info_dict = {
+info_articles = {
         'queryset': Article.objects.all(),
         'date_field': 'pub_data',
+    }
+
+info_events = {
+        'queryset':  Event.objects.all(),
+        'date_field': 'date_post'
     }
 
 urlpatterns = [
@@ -38,7 +44,7 @@ urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^contact$', views.contact, name='contact'),
     path('sitemap.xml', sitemap,
-            {'sitemaps': {'aricles': GenericSitemap(info_dict, priority=0.6)}},
+            {'sitemaps': {'aricles': GenericSitemap(info_articles, priority=0.6),'events':GenericSitemap(info_events, priority=0.6)}},
             name='django.contrib.sitemaps.views.sitemap'),
     path('login/',
          LoginView.as_view

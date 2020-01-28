@@ -10,6 +10,9 @@ class Event(models.Model):
     def __str__(self):
         return self.title_event
 
+    def get_absolute_url(self):
+        return '/events/'+str(self.id)+'/'
+
     class Meta:
         verbose_name = "Івент"
         verbose_name_plural = 'Івенти'
